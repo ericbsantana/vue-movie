@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
+import Navbar from "./components/layout/Navbar.vue";
 import Movies from "./components/Movies.vue";
 
 export default {

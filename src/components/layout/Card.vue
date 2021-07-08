@@ -9,31 +9,31 @@
         <figure class="image is-4by5">
           <img :src="getImg(imgUrl)" class="is-radiusless" />
           <div
-            class="is-overlay is-flex is-justify-content-center is-align-items-center"
+            class="is-overlay is-flex is-justify-content-space-around is-align-items-flex-start"
           >
-            <p
-              class="card-date is-size-7-desktop is-size-7-tablet has-text-centered tag is-primary"
+            <div
+              class="card-date is-size-7-desktop tag is-primary mt-2"
               :class="{ hide: this.hide }"
               datetime="date"
             >
-              <a class="is-small p-2" :class="{ 'is-expanded': this.isFav }">
-                <font-awesome-icon :icon="['far', 'calendar']" size="2x" />
-              </a>
-              {{ getDate(date) }}
-            </p>
-            <div class="is-flex is-justify-content-flex-end	">
-              <a
-                @click="toggleFav"
-                class="fav-button is-small p-2"
-                :class="{ 'is-fav': this.isFav }"
+              <p
+                class="is-small pr-2"
+                @mouseover="this.dateHover = true"
+                @mouseleave="this.dateHover = false"
               >
-                <font-awesome-icon
-                  :icon="['fas', 'heart']"
-                  size="2x"
-                  class=""
-                />
-              </a>
+                <font-awesome-icon :icon="['far', 'calendar']" />
+              </p>
+              <p>
+                {{ getDate(date) }}
+              </p>
             </div>
+            <a
+              @click="toggleFav"
+              class="fav-button is-small p-1"
+              :class="{ 'is-fav': this.isFav }"
+            >
+              <font-awesome-icon :icon="['fas', 'heart']" size="2x" class="" />
+            </a>
           </div>
         </figure>
       </div>
@@ -47,7 +47,8 @@
         </div>
         <div class="card-info is-flex is-justify-content-space-between">
           <div class="card-score">
-            <font-awesome-icon :icon="['fas', 'star']" /> {{ score }}
+            <font-awesome-icon :icon="['fas', 'star']" class="is-star" />
+            {{ score }}
           </div>
           <div class="cart-genre">{{ genre }}</div>
         </div>
@@ -71,7 +72,7 @@ export default {
   data() {
     return {
       genres: {},
-      price: Math.round((Math.random() * 10 + 0.99) / 100),
+      price: 9.99,
       isFav: false,
       hide: true,
     };

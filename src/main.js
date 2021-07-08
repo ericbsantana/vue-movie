@@ -17,7 +17,7 @@ import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 library.add(faShoppingCart, faHeart, faSearch, faStar, faCalendar);
 
-require("@/assets/main.scss");
+require("@/assets/scss/main.scss");
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .use(VueAxios, axios)

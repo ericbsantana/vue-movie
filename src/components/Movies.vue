@@ -3,11 +3,18 @@
     <div class="container">
       <div class="columns is-centered ">
         <div class="column is-three-quarters ">
+          <section v-if="latestReleases" class="hero">
+            <div class="hero-body">
+              <p class="title">
+                Em breve
+              </p>
+              <p class="subtitle">
+                Confira aqui os próximos lançamentos do cinema
+              </p>
+            </div>
+          </section>
           <div class="columns is-multiline">
             <div class="column is-full">
-              <p v-if="latestReleases" class="is-size-3">
-                Últimos lançamentos
-              </p>
               <p v-if="showingResults" class="is-size-3">
                 Resultado da sua pesquisa:
               </p>
@@ -30,7 +37,7 @@
 </template>
 
 <script>
-import Card from "./Card.vue";
+import Card from "./layout/Card.vue";
 
 export default {
   name: "Movies",

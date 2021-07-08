@@ -2,20 +2,15 @@
   <nav class="navbar is-primary ">
     <div class="container ">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
+        <a class="navbar-item is-size-3" href="/">
           Movue
-        </a>
-        <a role="button" class="navbar-burger">
-          <span></span>
-          <span></span>
-          <span></span>
         </a>
       </div>
 
       <div id="navbar" class="navbar-menu">
         <div class="navbar-start is-justify-content-center is-flex-grow-1">
-          <div class="navbar-item">
-            <div class="is-flex is-justify-content-center">
+          <div class="navbar-item is-flex">
+            <div class="is-flex is-justify-content-center is-flex-grow-2">
               <Searchbar />
             </div>
           </div>
