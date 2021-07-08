@@ -1,0 +1,23 @@
+<template>
+  <div class="field has-addons">
+    <div class="control has-icons-right">
+      <input
+        class="input is-medium is-primary"
+        type="text"
+        placeholder="Pesquisar filme ou gênero"
+        v-model="query"
+      />
+      <a class="icon is-small is-right is-primary">
+        <font-awesome-icon :icon="['fas', 'search']" />
+      </a>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Searchbar",
+};
+</script>
+
+<style></style>
