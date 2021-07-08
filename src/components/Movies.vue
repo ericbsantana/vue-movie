@@ -4,6 +4,14 @@
       <div class="columns is-centered ">
         <div class="column is-three-quarters ">
           <div class="columns is-multiline">
+            <div class="column is-full">
+              <p v-if="latestReleases" class="is-size-3">
+                Últimos lançamentos
+              </p>
+              <p v-if="showingResults" class="is-size-3">
+                Resultado da sua pesquisa:
+              </p>
+            </div>
             <Card
               class="column is-3"
               v-for="result in movies"
@@ -29,84 +37,64 @@ export default {
   components: {
     Card,
   },
+  emits: ["searchQuery"],
+  methods: {
+    searchMovie(query) {
+      this.axios.defaults.baseURL = "http://api.themoviedb.org/3";
+
+      this.axios
+        .get(`${query}`)
+        .then((data) => {
+          this.movies = data.movies;
+          console.log(data.movies);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 
   data() {
     return {
+      results: [],
       movies: [],
       genreList: [],
+      latestReleases: true,
+      showingResults: false,
     };
   },
 
   mounted() {
-    const reqGenres = this.axios.get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
-    );
-    const req = this.axios.get("http://192.168.15.99:3000/results");
-
+    this.axios.defaults.baseURL = "http://api.themoviedb.org/3";
     this.axios
-      .all([reqGenres, req])
-      .then(
-        this.axios.spread((...responses) => {
-          console.log(responses[0].data);
-          this.genreList = responses[0].data.genres;
-          this.movies = responses[1].data;
-
-          for (const movie of this.movies) {
-            for (const genre of this.genreList) {
-              if (movie.genre_ids[0] === genre.id) {
-                movie.genre_ids = genre.name;
-                console.log(movie.genre_ids);
-              }
-            }
-          }
-        })
+      .get(
+        `genre/movie/list?api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
       )
-      .catch((errors) => {
-        console.log(errors.message);
+      .then((res) => {
+        this.genreList = res.data.genres;
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
 
-    /* this.axios
-      .get("http://192.168.15.99:3000/genres")
-      .then((res) => {
-        this.genreList = res.data;
-        console.log(res.data);
-      })
-      .catch((error) => console.log(error.message));
     this.axios
-      .get("http://192.168.15.99:3000/results")
+      .get(
+        `/movie/upcoming?api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR&page=1`
+      )
       .then((res) => {
-        this.movies = res.data;
-        console.log(res.data);
-
-        for (const movie of this.movies) {
-        }
-      })
-      .catch((error) => console.log(error.message)); */
-
-    /* this.$http
-      .get("/results")
-      .then((res) => (this.movies = res))
-      .catch((error) => console.log(error.message));
- */
-    /* fetch("results")
-      .then((response) => response.json())
-      .then((data) => {
-        this.movies = data;
-        console.log(this.movies.length);
-      });
-
-    fetch("genres")
-      .then((response) => response.json())
-      .then((data) => {
-        for (const genre of data) {
-          for (const movie of this.movies) {
+        this.results = res.data.results;
+        for (const movie of this.results) {
+          for (const genre of this.genreList) {
             if (genre.id === movie.genre_ids[0]) {
-              genre.name = genre.genre;
+              movie.genre_ids = genre.name;
+              this.movies.push(movie);
             }
           }
         }
       })
-      .catch((error) => console.log(error.message)); */
+      .catch((err) => {
+        console.log(err.message);
+      });
   },
 };
 </script>

@@ -6,7 +6,7 @@
         @mouseover="this.hide = false"
         @mouseleave="this.hide = true"
       >
-        <figure class="image is-4by5 ">
+        <figure class="image is-4by5">
           <img :src="getImg(imgUrl)" class="is-radiusless" />
           <div
             class="is-overlay is-flex is-justify-content-center is-align-items-center"
@@ -16,7 +16,7 @@
               :class="{ hide: this.hide }"
               datetime="date"
             >
-              <a class="is-small p-2" :class="{ 'is-fav': this.isFav }">
+              <a class="is-small p-2" :class="{ 'is-expanded': this.isFav }">
                 <font-awesome-icon :icon="['far', 'calendar']" size="2x" />
               </a>
               {{ getDate(date) }}
@@ -56,7 +56,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">
+        <a href="#" class="card-footer-item add-button">
           Adicionar
         </a>
       </footer>
@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       genres: {},
-      price: Math.floor(Math.random() * (39.99 + 1)),
+      price: Math.round((Math.random() * 10 + 0.99) / 100),
       isFav: false,
       hide: true,
     };
