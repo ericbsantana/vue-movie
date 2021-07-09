@@ -23,16 +23,18 @@
               </p>
             </div>
             <transition-group name="fade">
-              <Card
-                class="column is-3"
-                v-for="result in movies"
-                :key="result.id"
-                :name="result.title"
-                :genre="result.genre_ids"
-                :imgUrl="result.poster_path"
-                :score="result.vote_average"
-                :date="result.release_date"
-              />
+              <template v-if="!isLoading">
+                <Card
+                  class="column is-3"
+                  v-for="result in movies"
+                  :key="result.id"
+                  :name="result.title"
+                  :genre="result.genre_ids"
+                  :imgUrl="result.poster_path"
+                  :score="result.vote_average"
+                  :date="result.release_date"
+                />
+              </template>
             </transition-group>
           </div>
         </div>
