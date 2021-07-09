@@ -1,17 +1,17 @@
 <template>
   <Navbar />
-  <Movies />
+  <Home />
 </template>
 
 <script>
 import Navbar from "./components/layout/Navbar.vue";
-import Movies from "./components/Movies.vue";
+import Home from "./components/Home.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
-    Movies,
+    Home,
   },
 };
 </script>

@@ -41,6 +41,7 @@ export default {
   components: {
     Searchbar,
   },
+  created() {},
 };
 </script>
 

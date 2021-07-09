@@ -50,7 +50,7 @@
             <font-awesome-icon :icon="['fas', 'star']" class="is-star" />
             {{ score }}
           </div>
-          <div class="cart-genre">{{ genre }}</div>
+          <div class="card-genre">{{ genre }}</div>
         </div>
         <div>
           <p>R$ {{ price }}</p>
@@ -85,7 +85,7 @@ export default {
       const datArray = date.split("-");
       const months = [
         "Janeiro",
-        "Feveriro",
+        "Fevereiro",
         "Março",
         "Abril",
         "Maio",

@@ -1,12 +1,12 @@
 <template>
   <div class="field has-addons">
-    <div class="control has-icons-right">
+    <div class="control has-icons-right" :class="{ 'is-loading': isLoading }">
       <input
         class="input is-medium is-primary"
         type="text"
         placeholder="Pesquisar filme ou gênero..."
         v-model="this.query"
-        @keyup.enter="searchMovie(this.query)"
+        @keyup.enter="searchMovie(query)"
       />
       <a class="icon is-small is-right is-primary">
         <font-awesome-icon :icon="['fas', 'search']" />
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Searchbar",
   data() {
@@ -24,9 +26,10 @@ export default {
     };
   },
   methods: {
-    searchMovie(query) {
-      this.$emit("searchQuery", query);
-    },
+    ...mapActions(["searchMovie"]),
+  },
+  computes: {
+    ...mapGetters(["isLoading"]),
   },
 };
 </script>
