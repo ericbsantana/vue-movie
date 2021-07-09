@@ -7,7 +7,7 @@
         @mouseleave="this.hide = true"
       >
         <figure class="image is-4by5">
-          <img :src="getImg(imgUrl)" class="is-radiusless" />
+          <img :src="getImg(imgUrl)" class="is-radiusless" rel="preload" />
           <div
             class="is-overlay is-flex is-justify-content-space-around is-align-items-flex-start"
           >
