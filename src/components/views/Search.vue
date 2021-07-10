@@ -4,7 +4,7 @@
     <p class="subtitle">Filmes com o termo "{{ this.expression }}":</p>
   </div>
   <div class="columns is-centered is-multiline">
-    <template v-if="this.loading"> loading</template>
+    <template v-if="this.loading"> <Loading /></template>
 
     <template v-else>
       <Card
@@ -24,10 +24,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Card from "../layout/Card.vue";
+import Loading from "../layout/Loading.vue";
 
 export default {
   name: "Search",
-  components: { Card },
+  components: { Card, Loading },
 
   data() {
     return {

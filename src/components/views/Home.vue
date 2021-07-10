@@ -3,8 +3,9 @@
     <p class="title">Bem-vindo ao Movue</p>
     <p class="subtitle">Estes são nossos filmes mais bem avaliados:</p>
   </div>
-  <template v-if="this.loading">loading</template>
-
+  <template v-if="this.loading">
+    <Loading />
+  </template>
   <template v-else>
     <div class="container">
       <div class="columns is-centered is-multiline">
@@ -26,10 +27,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Card from "../layout/Card";
+import Loading from "../layout/Loading.vue";
 
 export default {
   name: "Home",
-  components: { Card },
+  components: { Card, Loading },
 
   methods: {
     ...mapActions(["fetchTopRated"]),
