@@ -27,7 +27,7 @@ const actions = {
     const response = await axios.get(
       `/movie/top_rated?&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
     );
-    commit("SET_MOVIE", response.data);
+    commit("SET_MOVIE", response.data.results);
     commit("SET_IS_LOADING", false);
   },
 
@@ -38,9 +38,8 @@ const actions = {
         `/search/movie?query=${query}&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
       );
       const results = response.data.results;
-      console.log(results);
-      commit("SET_IS_LOADING", false);
       commit("SET_MOVIE", results);
+      commit("SET_IS_LOADING", false);
     } catch (err) {
       console.log(err.message);
       commit("SET_IS_LOADING", false);

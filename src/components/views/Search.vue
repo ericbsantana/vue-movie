@@ -2,6 +2,7 @@
   <div class="container">
     <div class="columns is-centered is-multiline">
       <template v-if="this.loading"> loading</template>
+
       <template v-else>
         <Card
           v-for="movie in this.movies"
