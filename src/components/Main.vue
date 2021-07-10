@@ -7,15 +7,18 @@
       </div>
     </div>
   </div>
+  <Sidebar />
 </template>
 
 <script>
 import Navbar from "./layout/Navbar.vue";
+import Sidebar from "./layout/Sidebar.vue";
 
 export default {
   name: "Main",
   components: {
     Navbar,
+    Sidebar,
   },
 };
 </script>
