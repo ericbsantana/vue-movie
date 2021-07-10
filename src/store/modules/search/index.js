@@ -4,6 +4,7 @@ axios.defaults.baseURL = "http://api.themoviedb.org/3";
 
 const state = {
   movieList: [],
+  topRatedMovies: [],
   isLoading: false,
   genres: [],
   query: "",
@@ -15,6 +16,9 @@ const mutations = {
   },
   CLEAR_MOVIES(state) {
     state.movieList = [];
+  },
+  SET_TOP_RATED(state, payload) {
+    state.topRatedMovies = payload;
   },
   SET_IS_LOADING(state, payload) {
     state.isLoading = payload;
@@ -30,7 +34,7 @@ const actions = {
     const response = await axios.get(
       `/movie/top_rated?&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR&include_adult=false`
     );
-    commit("SET_MOVIE", response.data.results);
+    commit("SET_TOP_RATED", response.data.results);
     commit("SET_IS_LOADING", false);
   },
 
@@ -53,6 +57,9 @@ const actions = {
 const getters = {
   movies: (state) => {
     return state.movieList;
+  },
+  topMovies: (state) => {
+    return state.topRatedMovies;
   },
   loading: (state) => {
     return state.isLoading;

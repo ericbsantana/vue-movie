@@ -5,10 +5,9 @@
       <div class="column is-three-quarters">
         <router-view> </router-view>
       </div>
+
       <template v-if="this.isFavoriteListOpen">
-        <div class="column">
-          <Sidebar />
-        </div>
+        <Sidebar />
       </template>
     </div>
   </div>

@@ -13,7 +13,7 @@
               class="is-overlay is-flex is-justify-content-space-around is-align-items-flex-start"
             >
               <div
-                class="card-date is-size-7-desktop tag is-primary mt-2"
+                class="card-date is-size-7-desktop is-size-6-mobile tag is-primary mt-2"
                 :class="{ hide: this.hide }"
                 datetime="date"
               >
@@ -30,7 +30,7 @@
               </div>
               <a
                 @click="toggleFav"
-                class="fav-button is-small p-1"
+                class="fav-button is-size-5-mobile is-size-5-desktop p-1"
                 :class="{ 'is-fav': this.isFav }"
               >
                 <font-awesome-icon

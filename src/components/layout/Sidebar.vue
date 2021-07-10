@@ -1,5 +1,5 @@
 <template>
-  <aside class="menu">
+  <div class="menu sidebar">
     <p class="menu-label">
       Meus favoritos
     </p>
@@ -8,7 +8,7 @@
         <a>{{ favorites }}</a>
       </li>
     </ul>
-  </aside>
+  </div>
 </template>
 
 <script>

@@ -11,7 +11,7 @@
       <div class="container">
         <div class="columns is-centered is-multiline">
           <Card
-            v-for="movie in this.movies"
+            v-for="movie in this.topMovies"
             :key="movie.id"
             :id="movie.id"
             :name="movie.title"
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["movies"]),
+    ...mapGetters(["topMovies"]),
     ...mapGetters(["loading"]),
   },
 };

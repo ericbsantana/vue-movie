@@ -1,13 +1,17 @@
 <template>
   <div class="field has-addons">
-    <div class="control has-icons-right" :class="{ 'is-loading': loading }">
+    <div class="control has-icons-right">
       <input
-        class="input is-medium is-primary"
+        class="input is-medium is-primary is-loading"
+        :class="{
+          'is-loading': loading,
+        }"
         type="text"
-        placeholder="Pesquisar filme ou gênero..."
+        placeholder="Pesquisar filme..."
         v-model="msg"
         @keyup.enter="search()"
       />
+
       <a class="icon is-small is-right is-primary">
         <font-awesome-icon :icon="['fas', 'search']" />
       </a>
