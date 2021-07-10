@@ -10,6 +10,7 @@
       <Card
         v-for="movie in this.movies"
         :key="movie.id"
+        :id="movie.id"
         :name="movie.title"
         :imgUrl="movie.poster_path"
         :genre="movie.genre_ids[0]"

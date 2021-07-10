@@ -23,9 +23,9 @@
             <a class="button is-primary">
               <font-awesome-icon :icon="['fas', 'heart']" />
             </a>
-            <a class="button is-primary">
+            <button @click="TOGGLE_FAVORITE_LIST" class="button is-primary">
               <font-awesome-icon :icon="['fas', 'shopping-cart']" />
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -35,13 +35,17 @@
 
 <script>
 import Searchbar from "./Searchbar.vue";
+import { mapMutations } from "vuex";
 
 export default {
   name: "Navbar",
   components: {
     Searchbar,
   },
-  created() {},
+
+  methods: {
+    ...mapMutations(["TOGGLE_FAVORITE_LIST"]),
+  },
 };
 </script>
 

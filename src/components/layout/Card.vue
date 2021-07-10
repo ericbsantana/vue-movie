@@ -74,22 +74,37 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from "vuex";
+
 export default {
   name: "Card",
-  props: ["name", "imgUrl", "genre", "date", "score"],
+  props: ["name", "imgUrl", "genre", "date", "score", "id"],
   data() {
     return {
       genres: {},
       price: 9.99,
-      isFav: false,
       hide: true,
+      isFav: false,
     };
   },
 
+  mounted() {
+    this.isFav = this.getFavorite(this.id);
+    console.log(this.getFavorite(this.id));
+  },
+
+  computed: {
+    ...mapGetters(["getFavorite"]),
+  },
+
   methods: {
+    ...mapMutations(["ADD_FAVORITE_ITEMS"]),
+    ...mapMutations(["REMOVE_FAVORITE_ITEMS"]),
+
     getImg(url) {
       return "https://image.tmdb.org/t/p/w500/" + url;
     },
+
     getDate(date) {
       const datArray = date.split("-");
       const months = [
@@ -106,13 +121,20 @@ export default {
         "Novembro",
         "Dezembro",
       ];
+
       const day = datArray[2];
       const monthStr = months[datArray[1] - 1];
       const year = datArray[0];
       const newDate = `${day} de ${monthStr}, ${year}`;
       return newDate;
     },
+
     toggleFav() {
+      if (this.isFav) {
+        this.REMOVE_FAVORITE_ITEMS(this.id);
+      } else {
+        this.ADD_FAVORITE_ITEMS(this.id);
+      }
       this.isFav = !this.isFav;
     },
   },

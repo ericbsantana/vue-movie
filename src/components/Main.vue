@@ -5,20 +5,29 @@
       <div class="column is-three-quarters">
         <router-view></router-view>
       </div>
+      <template v-if="this.isFavoriteListOpen">
+        <div class="column">
+          <Sidebar />
+        </div>
+      </template>
     </div>
   </div>
-  <Sidebar />
 </template>
 
 <script>
 import Navbar from "./layout/Navbar.vue";
 import Sidebar from "./layout/Sidebar.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Main",
   components: {
     Navbar,
     Sidebar,
+  },
+
+  computed: {
+    ...mapGetters(["isFavoriteListOpen"]),
   },
 };
 </script>
