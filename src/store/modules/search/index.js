@@ -25,7 +25,7 @@ const actions = {
   async fetchTopRated({ commit }) {
     commit("SET_IS_LOADING", true);
     const response = await axios.get(
-      `/movie/top_rated?&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
+      `/movie/top_rated?&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR&include_adult=false`
     );
     commit("SET_MOVIE", response.data.results);
     commit("SET_IS_LOADING", false);
@@ -35,7 +35,7 @@ const actions = {
     try {
       commit("SET_IS_LOADING", true);
       const response = await axios.get(
-        `/search/movie?query=${query}&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
+        `/search/movie?query=${query}&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR&include_adult=false`
       );
       const results = response.data.results;
       commit("SET_MOVIE", results);
