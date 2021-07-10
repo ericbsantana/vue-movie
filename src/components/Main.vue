@@ -3,7 +3,7 @@
   <div class="container mt-5">
     <div class="columns is-centered">
       <div class="column is-three-quarters">
-        <router-view></router-view>
+        <router-view> </router-view>
       </div>
       <template v-if="this.isFavoriteListOpen">
         <div class="column">

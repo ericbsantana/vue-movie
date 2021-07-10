@@ -13,6 +13,9 @@ const mutations = {
   SET_MOVIE(state, payload) {
     state.movieList = payload;
   },
+  CLEAR_MOVIES(state) {
+    state.movieList = [];
+  },
   SET_IS_LOADING(state, payload) {
     state.isLoading = payload;
   },

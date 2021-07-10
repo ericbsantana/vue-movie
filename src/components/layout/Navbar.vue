@@ -2,9 +2,11 @@
   <nav class="navbar is-primary ">
     <div class="container ">
       <div class="navbar-brand">
-        <a class="navbar-item is-size-3" href="/">
-          Movue
-        </a>
+        <router-link to="/">
+          <a class="navbar-item is-size-3" href="/">
+            Movue
+          </a>
+        </router-link>
       </div>
 
       <div id="navbar" class="navbar-menu">
