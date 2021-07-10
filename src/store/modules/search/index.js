@@ -2,57 +2,59 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://api.themoviedb.org/3";
 
-function mockDelay(ms) {
-  return function(p) {
-    return new Promise((resolve) => setTimeout(() => resolve(p), ms));
-  };
-}
-
 const state = {
-  query: "",
-  movieList: [],
+  movies: [],
   isLoading: false,
   genres: [],
+  query: "a",
 };
 
 const mutations = {
-  SET_MOVIE_LIST(state, payload) {
-    state.movieList = payload;
+  SET_MOVIE(state, payload) {
+    state.movies = payload;
   },
   SET_IS_LOADING(state, payload) {
     state.isLoading = payload;
   },
-  SET_LATEST_RELEASES(state, payload) {
-    state.isLoading = payload;
+  SET_SEARCH_STRING(state, payload) {
+    state.query = payload;
   },
 };
 
 const actions = {
-  async searchMovie({ commit }, query) {
+  loadMovies({ commit }) {
     commit("SET_IS_LOADING", true);
     axios
       .get(
-        `/search/movie?query=${query}&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR&page=1&include_adult=false`
+        `/search/movie?query=${this.query}&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
       )
-      .then(mockDelay(3500))
-      .then((res) => {
-        commit("SET_IS_LOADING", false);
-        commit("SET_MOVIE_LIST", res.data.results);
-        console.log(res.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-        commit("SET_IS_LOADING", false);
+      .then((response) => response.data)
+      .then((movies) => {
+        console.log(movies);
+        commit("SET_MOVIE", movies);
       });
+    commit("SET_IS_LOADING", false);
+  },
+
+  async getLatest({ commit }) {
+    try {
+      commit("SET_IS_LOADING", true);
+      const response = await axios.get(
+        `/movie/top_rated?&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
+      );
+      const results = response.data.results;
+
+      commit("SET_MOVIE_LIST", results);
+    } catch (err) {
+      console.log(err.message);
+    }
+    commit("SET_IS_LOADING", false);
   },
 };
 
 const getters = {
   movies: (state) => {
-    return state.movieList;
-  },
-  isLoading: (state) => {
-    return state.isLoading;
+    return state.movies;
   },
 };
 
