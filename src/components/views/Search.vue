@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="columns is-centered is-multiline">
-      <template v-if="this.isLoading"> loading</template>
+      <template v-if="this.loading"> loading</template>
       <template v-else>
         <Card
           v-for="movie in this.movies"
@@ -18,17 +18,17 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Card from "../layout/Card.vue";
 
 export default {
   name: "Search",
-  props: ["query"],
   components: { Card },
 
   computed: {
     ...mapGetters(["movies"]),
-    ...mapState(["isLoading"]),
+    ...mapGetters(["loading"]),
+    ...mapGetters(["query"]),
   },
 
   methods: {

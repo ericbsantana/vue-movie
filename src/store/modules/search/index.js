@@ -6,6 +6,7 @@ const state = {
   movieList: [],
   isLoading: false,
   genres: [],
+  query: "",
 };
 
 const mutations = {
@@ -14,6 +15,9 @@ const mutations = {
   },
   SET_IS_LOADING(state, payload) {
     state.isLoading = payload;
+  },
+  SET_QUERY(state, payload) {
+    state.query = payload;
   },
 };
 
@@ -36,7 +40,6 @@ const actions = {
       const results = response.data.results;
       console.log(results);
       commit("SET_IS_LOADING", false);
-
       commit("SET_MOVIE", results);
     } catch (err) {
       console.log(err.message);
@@ -51,6 +54,9 @@ const getters = {
   },
   loading: (state) => {
     return state.isLoading;
+  },
+  query: (state) => {
+    return state.query;
   },
 };
 

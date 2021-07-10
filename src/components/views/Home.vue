@@ -4,7 +4,7 @@
       <p class="title">Welcome to Movue</p>
       <p class="subtitle">These are the latest releases:</p>
     </div>
-    <div v-if="isLoading">
+    <div v-if="loading">
       loading...
     </div>
     <div v-else>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -24,8 +24,8 @@ export default {
   },
 
   computed: {
-    ...mapState["movies"],
-    ...mapState["isLoading"],
+    ...mapGetters(["movies"]),
+    ...mapGetters(["loading"]),
   },
 };
 </script>
