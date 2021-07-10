@@ -13,11 +13,33 @@ import {
   faHeart,
   faSearch,
   faStar,
+  faEnvelope,
+  faIdCard,
+  faPhone,
+  faUser,
+  faMapPin,
+  faHome,
+  faMap,
+  faCity,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 
-library.add(faShoppingCart, faHeart, faSearch, faStar, faCalendar);
+library.add(
+  faShoppingCart,
+  faHeart,
+  faSearch,
+  faStar,
+  faCalendar,
+  faEnvelope,
+  faIdCard,
+  faPhone,
+  faUser,
+  faMapPin,
+  faHome,
+  faMap,
+  faCity
+);
 
 require("@/assets/scss/main.scss");
 createApp(App)

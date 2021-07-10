@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="column is-one-quarter">
     <div class="card card-equal-height">
       <div
         class="card-image"

@@ -2,10 +2,13 @@
   <section class="hero is-info">
     <div class="hero-body">
       <p class="title">Welcome to Movue</p>
-      <p class="subtitle">
-        These are the latest releases:
-      </p>
-      <div v-for="movie in movies" :key="movie.id">{{ movie.name }}}</div>
+      <p class="subtitle">These are the latest releases:</p>
+    </div>
+    <div v-if="isLoading">
+      loading...
+    </div>
+    <div v-else>
+      a
     </div>
   </section>
 </template>
@@ -16,16 +19,13 @@ import { mapState } from "vuex";
 export default {
   name: "Home",
 
-  data() {
-    return { list: null };
-  },
-
-  mounted() {
-    this.$store.dispatch("loadMovies");
+  created() {
+    this.$store.dispatch("fetchTopRated");
   },
 
   computed: {
     ...mapState["movies"],
+    ...mapState["isLoading"],
   },
 };
 </script>
