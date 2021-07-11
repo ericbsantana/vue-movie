@@ -21,7 +21,7 @@ const state = {
     { id: 10402, name: "Música" },
     { id: 9648, name: "Mistério" },
     { id: 10749, name: "Romance" },
-    { id: 878, name: "Ficção científica" },
+    { id: 878, name: "Ficção" },
     { id: 10770, name: "Cinema TV" },
     { id: 53, name: "Thriller" },
     { id: 10752, name: "Guerra" },
