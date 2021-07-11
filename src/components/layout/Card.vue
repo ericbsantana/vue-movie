@@ -42,27 +42,30 @@
           class="card-content is-flex p-2 is-flex-direction-column is-align-items-center is-flex-grow-1"
         >
           <div
-            class="card-name is-flex is-align-items-center has-text-centered"
+            class="card-name is-flex is-align-items-center has-text-centered is-flex-grow-2"
           >
             <p>
               <strong>{{ name }} </strong>
             </p>
           </div>
-          <div class="card-info is-flex is-justify-content-space-between">
-            <div class="card-score">
+          <div class="card-info is-flex is-align-items-flex-end tags">
+            <div class="card-score tag is-primary">
               <font-awesome-icon :icon="['fas', 'star']" class="is-star" />
               {{ score }}
             </div>
-            <div class="card-genre">{{ genre }}</div>
-          </div>
-          <div>
-            <p>R$ {{ price }}</p>
+            <div class="card-genre tag is-primary">{{ genre }}</div>
+            <div class="tag is-primary">
+              <p>R$ {{ price }}</p>
+            </div>
           </div>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item add-button">
+          <button
+            href="#"
+            class="button is-primary is-radiusless card-footer-item add-button"
+          >
             Adicionar
-          </a>
+          </button>
         </footer>
       </div>
     </transition>
