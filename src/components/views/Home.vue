@@ -16,7 +16,7 @@
             :id="movie.id"
             :name="movie.title"
             :imgUrl="movie.poster_path"
-            :genre="movie.genre_ids"
+            :genre="movie.genre_ids[0]"
             :score="movie.vote_average"
             :date="movie.release_date"
           />

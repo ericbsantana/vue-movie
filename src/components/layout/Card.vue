@@ -17,11 +17,7 @@
                 :class="{ hide: this.hide }"
                 datetime="date"
               >
-                <p
-                  class="is-small pr-2"
-                  @mouseover="this.dateHover = true"
-                  @mouseleave="this.dateHover = false"
-                >
+                <p class="is-small pr-2">
                   <font-awesome-icon :icon="['far', 'calendar']" />
                 </p>
                 <p>
@@ -81,7 +77,6 @@ export default {
   props: ["name", "imgUrl", "genre", "date", "score", "id"],
   data() {
     return {
-      genres: {},
       price: 9.99,
       hide: true,
       isFav: false,
@@ -90,7 +85,6 @@ export default {
 
   mounted() {
     this.isFav = this.getFavorite(this.id);
-    console.log(this.getFavorite(this.id));
   },
 
   computed: {
@@ -102,11 +96,15 @@ export default {
     ...mapMutations(["REMOVE_FAVORITE_ITEMS"]),
 
     getImg(url) {
-      return "https://image.tmdb.org/t/p/w500/" + url;
+      if (url == null) {
+        return "https://via.placeholder.com/600x600?text=Imagem+não+encontrada";
+      } else {
+        return "https://image.tmdb.org/t/p/w500/" + url;
+      }
     },
 
     getDate(date) {
-      const datArray = date.split("-");
+      const dateArray = date.split("-");
       const months = [
         "Janeiro",
         "Fevereiro",
@@ -122,9 +120,9 @@ export default {
         "Dezembro",
       ];
 
-      const day = datArray[2];
-      const monthStr = months[datArray[1] - 1];
-      const year = datArray[0];
+      const day = dateArray[2];
+      const monthStr = months[dateArray[1] - 1];
+      const year = dateArray[0];
       const newDate = `${day} de ${monthStr}, ${year}`;
       return newDate;
     },
