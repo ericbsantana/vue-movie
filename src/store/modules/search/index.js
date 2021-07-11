@@ -55,7 +55,29 @@ const actions = {
       const response = await axios.get(
         `/movie/top_rated?&api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR&include_adult=false`
       );
-      commit("SET_TOP_RATED", response.data.results);
+
+      const results = response.data.results;
+
+      for (const movie of results) {
+        if (movie.title == null) {
+          movie.title = "Sem título";
+        }
+        if (movie.vote_average == 0) {
+          movie.vote_average = "S.N";
+        }
+
+        if (movie.release_date == null) {
+          movie.release_date = "Sem data";
+        }
+
+        for (const genre of state.genres) {
+          if (genre.id == movie.genre_ids[0]) {
+            movie.genre_ids[0] = genre.name;
+          }
+        }
+      }
+
+      commit("SET_TOP_RATED", results);
       commit("SET_IS_LOADING", false);
     } catch (err) {
       console.log(err.message);
@@ -88,7 +110,6 @@ const actions = {
             movie.genre_ids[0] = genre.name;
           }
         }
-        console.log(movie);
       }
 
       commit("SET_MOVIE", results);
