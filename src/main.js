@@ -21,6 +21,7 @@ import {
   faHome,
   faMap,
   faCity,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
@@ -38,7 +39,8 @@ library.add(
   faMapPin,
   faHome,
   faMap,
-  faCity
+  faCity,
+  faTrash
 );
 
 require("@/assets/scss/main.scss");

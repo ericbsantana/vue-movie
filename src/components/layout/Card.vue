@@ -2,11 +2,7 @@
   <div class="column is-one-quarter">
     <transition name="fade">
       <div class="card card-equal-height">
-        <div
-          class="card-image"
-          @mouseover="this.hide = false"
-          @mouseleave="this.hide = true"
-        >
+        <div class="card-image">
           <figure class="image is-4by5">
             <img :src="getImg(imgUrl)" class="is-radiusless" rel="preload" />
             <div
@@ -14,7 +10,6 @@
             >
               <div
                 class="card-date is-size-7-desktop is-size-6-mobile tag is-primary mt-2"
-                :class="{ hide: this.hide }"
                 datetime="date"
               >
                 <p class="is-small pr-2">
@@ -25,9 +20,9 @@
                 </p>
               </div>
               <a
-                @click="toggleFav"
+                @click="this.toggleFav"
                 class="fav-button is-size-5-mobile is-size-5-desktop p-1"
-                :class="{ 'is-fav': this.isFav }"
+                :class="{ 'is-fav': this.isOnFav(this.id) }"
               >
                 <font-awesome-icon
                   :icon="['fas', 'heart']"
@@ -73,7 +68,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Card",
@@ -81,22 +76,18 @@ export default {
   data() {
     return {
       price: 9.99,
-      hide: true,
       isFav: false,
     };
   },
 
-  mounted() {
-    this.isFav = this.getFavorite(this.id);
-  },
-
   computed: {
-    ...mapGetters(["getFavorite"]),
+    ...mapGetters(["isOnFav"]),
   },
 
   methods: {
     ...mapMutations(["ADD_FAVORITE_ITEMS"]),
     ...mapMutations(["REMOVE_FAVORITE_ITEMS"]),
+    ...mapActions(["fetchFavoriteItems"]),
 
     getImg(url) {
       if (url == null) {
@@ -131,12 +122,11 @@ export default {
     },
 
     toggleFav() {
-      if (this.isFav) {
+      if (this.isOnFav(this.id)) {
         this.REMOVE_FAVORITE_ITEMS(this.id);
       } else {
-        this.ADD_FAVORITE_ITEMS(this.id);
+        this.fetchFavoriteItems(this.id);
       }
-      this.isFav = !this.isFav;
     },
   },
 };

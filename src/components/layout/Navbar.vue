@@ -28,14 +28,20 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <font-awesome-icon :icon="['fas', 'heart']" />
-            </a>
-            <button @click="TOGGLE_FAVORITE_LIST" class="button is-primary">
-              <font-awesome-icon :icon="['fas', 'shopping-cart']" />
-            </button>
-          </div>
+          <button class="button is-primary" @click="TOGGLE_FAVORITE_LIST">
+            <font-awesome-icon :icon="['fas', 'heart']" />
+            <transition name="fade">
+              <template v-if="numberOfFavorites != 0">
+                <span
+                  class="navbar-number has-background-primary-light has-text-primary"
+                  >{{ numberOfFavorites }}</span
+                >
+              </template>
+            </transition>
+          </button>
+          <button class="button is-primary">
+            <font-awesome-icon :icon="['fas', 'shopping-cart']" />
+          </button>
         </div>
       </div>
     </div>
@@ -44,14 +50,16 @@
 
 <script>
 import Searchbar from "./Searchbar.vue";
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "Navbar",
   components: {
     Searchbar,
   },
-
+  computed: {
+    ...mapGetters(["numberOfFavorites"]),
+  },
   methods: {
     ...mapMutations(["TOGGLE_FAVORITE_LIST"]),
   },

@@ -1,10 +1,12 @@
 .sidebar {
-  height: 100%; /* 100% Full-height */
-  position: fixed; /* Stay in place */
-  z-index: 40; /* Stay on top */
-  top: 0; /* Stay at the top */
+  border: 1px solid #aaa;
+  height: 100%;
+  top: 0;
   right: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 90px;
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  position: fixed;
+  background-color: #fff;
+  overflow-x: hidden;
+  padding-top: 66px;
+  width: 28%;
+  transition: 0.5s;
 }

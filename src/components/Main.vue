@@ -3,19 +3,22 @@
   <div class="container mt-5">
     <div class="columns is-centered">
       <div class="column is-three-quarters">
-        <router-view> </router-view>
+        <transition name="slide-fade">
+          <router-view></router-view>
+        </transition>
       </div>
-
+    </div>
+    <transition name="slide-fade">
       <template v-if="this.isFavoriteListOpen">
         <Sidebar />
       </template>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import Navbar from "./layout/Navbar.vue";
-import Sidebar from "./layout/Sidebar.vue";
+import Sidebar from "./layout/Favorites/FavoriteBar.vue";
 import { mapGetters } from "vuex";
 
 export default {
