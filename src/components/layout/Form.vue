@@ -1,6 +1,6 @@
 <template>
   <form>
-    <div class="modal is-active">
+    <div class="modal" :class="{ 'is-active': this.bought }">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -8,7 +8,6 @@
         </header>
         <section class="modal-card-body has-text-centered">
           <p class="subtitle">Sua compra foi finalizada com sucesso!</p>
-
           <router-link to="/">
             <button
               class="button is-primary is-large has-text-centered"
@@ -207,14 +206,14 @@ export default {
       cellphone: null,
       street: null,
       email: null,
-      isNameValid: null,
-      isCEPValid: null,
-      isStateValid: null,
-      isCityValid: null,
-      isEmailValid: null,
-      isAddressValid: null,
-      isCPFValid: null,
-      isCellphoneValid: null,
+      isNameValid: true,
+      isCEPValid: true,
+      isStateValid: true,
+      isCityValid: true,
+      isEmailValid: true,
+      isAddressValid: true,
+      isCPFValid: true,
+      isCellphoneValid: true,
       bought: false,
     };
   },

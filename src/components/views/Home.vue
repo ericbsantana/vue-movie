@@ -9,7 +9,7 @@
     </template>
     <template v-else>
       <div class="container">
-        <div class="columns is-centered is-multiline">
+        <div class="columns is-centered is-multiline is-mobile">
           <Card
             v-for="movie in this.topMovies"
             :key="movie.id"

@@ -9,4 +9,12 @@
   padding-top: 66px;
   width: 28%;
   transition: 0.5s;
+  z-index: 999;
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: 90%;
+    padding-top: 0;
+  }
 }

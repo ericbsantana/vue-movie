@@ -3,16 +3,14 @@
     <div class="container ">
       <div class="navbar-brand">
         <router-link to="/">
-          <a class="navbar-item">
-            <h1 class="title logo">
+          <div class="navbar-item is-flex ">
+            <h1 id="title" class="title logo is-size-3-touch	is-flex-grow-3">
               Movue
             </h1>
-          </a>
+          </div>
         </router-link>
-        <div
-          class="navbar-start is-justify-content-center is-flex-grow-1 is-hidden-desktop"
-        >
-          <div class="navbar-item is-flex">
+        <div class="navbar-start  is-hidden-desktop">
+          <div class="navbar-item">
             <Searchbar />
           </div>
         </div>

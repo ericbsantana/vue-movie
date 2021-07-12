@@ -3,7 +3,7 @@
     <div
       class="is-flex is-justify-content-space-between is-align-content-baseline	"
     >
-      <span class="title">Lista de Favoritos</span>
+      <span class="title is-size-5-mobile">Lista de Favoritos</span>
       <button
         class="button is-primary is-small"
         @click="this.CLEAR_FAVORITE_ITEMS"

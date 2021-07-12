@@ -2,10 +2,7 @@
   <div class="field has-addons">
     <div class="control has-icons-right">
       <input
-        class="input is-medium is-primary is-loading"
-        :class="{
-          'is-loading': loading,
-        }"
+        class="input is-primary"
         type="text"
         placeholder="Pesquisar filme..."
         v-model="msg"

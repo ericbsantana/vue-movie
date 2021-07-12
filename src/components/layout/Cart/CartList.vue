@@ -11,7 +11,7 @@
             <img :src="this.getImg(item.img)" width="32" height="32" />
 
             <p class="ml-2 is-flex-grow-1 is-size-7">{{ item.name }}</p>
-            <p class="pr-4">R$ {{ item.price }}</p>
+            <p class="pr-4 p-0-mobile is-size-7-mobile">R$ {{ item.price }}</p>
             <p class="pr-4">{{ item.quantity }}</p>
             <div class="is-flex is-jusfity-content-center">
               <p class="is-small pr-2" @click="this.REMOVE_CART_ITEMS(item.id)">

@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-one-quarter">
+  <div class="column is-one-quarter-desktop is-three-quarters-mobile">
     <transition name="fade">
       <div class="card card-equal-height">
         <div class="card-image">

@@ -1,27 +1,29 @@
 <template>
-  <div class="container">
-    <div class="columns mt-4">
-      <div class="column is-half">
-        <h1 class="title">Finalizar compra</h1>
-        <div class="box">
-          <Form ref="form" />
+  <section class="p-3">
+    <div class="container">
+      <div class="columns mt-4">
+        <div class="column is-half">
+          <h1 class="title">Finalizar compra</h1>
+          <div class="box">
+            <Form ref="form" />
+          </div>
         </div>
-      </div>
-      <div class="column is-half">
-        <h1 class="title">Carrinho</h1>
-        <div class="box">
-          <CartList />
+        <div class="column is-half">
+          <h1 class="title">Carrinho</h1>
+          <div class="box">
+            <CartList />
+          </div>
+          <button
+            class="button is-primary is-large has-text-centered"
+            @click="handleForm"
+            :disabled="this.numberOfProducts === 0"
+          >
+            Finalizar compra
+          </button>
         </div>
-        <button
-          class="button is-primary is-large v-centered"
-          @click="handleForm"
-          :disabled="this.numberOfProducts === 0"
-        >
-          Finalizar compra
-        </button>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

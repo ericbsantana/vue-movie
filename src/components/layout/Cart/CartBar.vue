@@ -4,20 +4,27 @@
       <div
         class="is-flex is-justify-content-space-between is-align-content-baseline"
       >
-        <span class="title">Lista de compras</span>
+        <span class="title is-size-5-mobile">Lista de compras</span>
         <button
           class="button is-primary is-small"
           @click="this.CLEAR_CART_ITEMS"
+          :disabled="this.numberOfProducts === 0"
         >
           Esvaziar
         </button>
         <button class="delete is-large" @click="this.TOGGLE_CART_LIST" />
       </div>
       <CartList />
-      <div class="is-flex is-flex-direction-column is-align-content-flex-end ">
-        <h1 class="subtitle">Total: R$ {{ this.totalPrice }}</h1>
+
+      <div class="is-flex is-flex-direction-column is-align-items-flex-end">
+        Total: R$ {{ this.totalPrice }}
         <router-link to="/checkout">
-          <button class="button is-primary">Finalizar compras</button>
+          <button
+            class="button is-primary"
+            :disabled="this.numberOfProducts === 0"
+          >
+            Finalizar compras
+          </button>
         </router-link>
       </div>
     </div>
@@ -33,6 +40,7 @@ export default {
   components: { CartList },
   computed: {
     ...mapGetters(["totalPrice"]),
+    ...mapGetters(["numberOfProducts"]),
   },
   methods: {
     ...mapMutations(["TOGGLE_CART_LIST"]),
