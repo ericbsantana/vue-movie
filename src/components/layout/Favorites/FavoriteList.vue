@@ -31,7 +31,13 @@
               >
                 <font-awesome-icon :icon="['fas', 'trash']" size="1x" />
               </p>
-              <p class="is-small pr-2">
+              <p
+                class="is-small pr-2"
+                @click="
+                  this.fetchCartItems(fav.id);
+                  this.REMOVE_FAVORITE_ITEMS(fav.id);
+                "
+              >
                 <font-awesome-icon :icon="['fas', 'shopping-cart']" size="1x" />
               </p>
             </div>
@@ -43,7 +49,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "ListItem",
@@ -56,6 +62,7 @@ export default {
     ...mapMutations(["CLEAR_FAVORITE_ITEMS"]),
     ...mapMutations(["REMOVE_FAVORITE_ITEMS"]),
     ...mapMutations(["TOGGLE_FAVORITE_LIST"]),
+    ...mapActions(["fetchCartItems"]),
 
     getImg(url) {
       if (url == null) {

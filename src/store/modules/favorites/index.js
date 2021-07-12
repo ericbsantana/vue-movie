@@ -33,6 +33,9 @@ const mutations = {
   TOGGLE_FAVORITE_LIST(state) {
     state.isFavoriteListOpen = !state.isFavoriteListOpen;
   },
+  FAVORITE_LIST_OFF(state) {
+    state.isFavoriteListOpen = false;
+  },
 };
 
 const actions = {

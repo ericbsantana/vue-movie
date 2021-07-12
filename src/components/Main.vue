@@ -8,28 +8,34 @@
         </transition>
       </div>
     </div>
-    <transition name="slide-fade">
+    <transition-group name="slide-fade">
       <template v-if="this.isFavoriteListOpen">
-        <Sidebar />
+        <FavoriteBar />
       </template>
-    </transition>
+      <template v-else-if="this.isCartListOpen">
+        <CartBar />
+      </template>
+    </transition-group>
   </div>
 </template>
 
 <script>
 import Navbar from "./layout/Navbar.vue";
-import Sidebar from "./layout/Favorites/FavoriteBar.vue";
+import FavoriteBar from "./layout/Favorites/FavoriteBar.vue";
+import CartBar from "./layout/Cart/CartBar.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "Main",
   components: {
     Navbar,
-    Sidebar,
+    FavoriteBar,
+    CartBar,
   },
 
   computed: {
     ...mapGetters(["isFavoriteListOpen"]),
+    ...mapGetters(["isCartListOpen"]),
   },
 };
 </script>

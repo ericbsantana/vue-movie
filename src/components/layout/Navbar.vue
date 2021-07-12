@@ -28,7 +28,13 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <button class="button is-primary" @click="TOGGLE_FAVORITE_LIST">
+          <button
+            class="button is-primary"
+            @click="
+              TOGGLE_FAVORITE_LIST();
+              CART_LIST_OFF();
+            "
+          >
             <font-awesome-icon :icon="['fas', 'heart']" />
             <transition name="fade">
               <template v-if="numberOfFavorites != 0">
@@ -39,8 +45,22 @@
               </template>
             </transition>
           </button>
-          <button class="button is-primary">
+          <button
+            class="button is-primary"
+            @click="
+              TOGGLE_CART_LIST();
+              FAVORITE_LIST_OFF();
+            "
+          >
             <font-awesome-icon :icon="['fas', 'shopping-cart']" />
+            <transition name="fade">
+              <template v-if="numberOfProducts != 0">
+                <span
+                  class="navbar-number has-background-primary-light has-text-primary"
+                  >{{ numberOfProducts }}</span
+                >
+              </template>
+            </transition>
           </button>
         </div>
       </div>
@@ -59,9 +79,13 @@ export default {
   },
   computed: {
     ...mapGetters(["numberOfFavorites"]),
+    ...mapGetters(["numberOfProducts"]),
   },
   methods: {
     ...mapMutations(["TOGGLE_FAVORITE_LIST"]),
+    ...mapMutations(["TOGGLE_CART_LIST"]),
+    ...mapMutations(["CART_LIST_OFF"]),
+    ...mapMutations(["FAVORITE_LIST_OFF"]),
   },
 };
 </script>

@@ -56,8 +56,8 @@
         </div>
         <footer class="card-footer">
           <button
-            href="#"
             class="button is-primary is-radiusless card-footer-item add-button"
+            @click="this.fetchCartItems(this.id)"
           >
             Adicionar
           </button>
@@ -88,6 +88,7 @@ export default {
     ...mapMutations(["ADD_FAVORITE_ITEMS"]),
     ...mapMutations(["REMOVE_FAVORITE_ITEMS"]),
     ...mapActions(["fetchFavoriteItems"]),
+    ...mapActions(["fetchCartItems"]),
 
     getImg(url) {
       if (url == null) {
