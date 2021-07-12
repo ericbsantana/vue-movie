@@ -11,7 +11,7 @@ Storage.prototype.getObj = function(key) {
 
 const state = {
   cartList: localStorage.getObj("cart") || [],
-  products_id: localStorage.getObj("prod_ids") || [],
+  products_id: localStorage.getObj("products_ids") || [],
   isCartListOpen: false,
 };
 
@@ -29,13 +29,14 @@ const mutations = {
       state.cartList.push(payload);
       state.products_id.push(payload.id);
       localStorage.setObj("cart", state.cartList);
-      localStorage.setObj("prod_ids", state.products_id);
+      localStorage.setObj("products_ids", state.products_id);
     }
   },
   REMOVE_CART_ITEMS(state, payload) {
     state.cartList = state.cartList.filter((movie) => movie.id !== payload);
     state.products_id = state.products_id.filter((id) => id !== payload);
     localStorage.setObj("cart", state.cartList);
+    localStorage.setObj("products_ids", state.products_id);
   },
   CLEAR_CART_ITEMS(state) {
     while (state.cartList.length) {
@@ -45,7 +46,7 @@ const mutations = {
       state.products_id.pop();
     }
     localStorage.setObj("cart", state.cartList);
-    localStorage.setObj("prod_ids", state.products_id);
+    localStorage.setObj("products_ids", state.products_id);
   },
   TOGGLE_CART_LIST(state) {
     state.isCartListOpen = !state.isCartListOpen;

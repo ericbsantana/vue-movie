@@ -15,7 +15,7 @@
         <button
           class="button is-primary is-large v-centered"
           @click="handleForm"
-          :disabled="this.products.length === 0"
+          :disabled="this.numberOfProducts === 0"
         >
           Finalizar compra
         </button>
@@ -37,15 +37,16 @@ export default {
     ...mapMutations(["FAVORITE_LIST_OFF"]),
 
     handleForm() {
-      if (this.products.length === 0) {
+      if (this.numberOfProducts === 0) {
         window.alert("seu carrinho está vazio!");
       }
       this.$refs.form.validateForm();
     },
   },
   computed: {
-    ...mapGetters(["products"]),
+    ...mapGetters(["numberOfProducts"]),
   },
+
   mounted() {
     this.CART_LIST_OFF();
     this.FAVORITE_LIST_OFF();
