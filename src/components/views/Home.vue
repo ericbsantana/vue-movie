@@ -35,11 +35,20 @@ export default {
   name: "Home",
   components: { Card, Loading },
 
+  data() {
+    return {
+      page: 1,
+    };
+  },
+
   methods: {
     ...mapActions(["fetchTopRated"]),
     ...mapMutations(["CLEAR_MOVIES"]),
-  },
 
+    nextPage() {
+      this.page += 1;
+    },
+  },
   created() {
     this.CLEAR_MOVIES();
     this.fetchTopRated();

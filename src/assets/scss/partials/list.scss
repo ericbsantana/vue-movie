@@ -2,3 +2,8 @@
   width: 32px;
   height: 32px;
 }
+
+.icon:hover {
+  color: $primary;
+  cursor: pointer;
+}

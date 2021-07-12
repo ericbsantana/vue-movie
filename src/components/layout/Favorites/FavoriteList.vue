@@ -29,7 +29,11 @@
                 class="is-small pr-2"
                 @click="this.REMOVE_FAVORITE_ITEMS(fav.id)"
               >
-                <font-awesome-icon :icon="['fas', 'trash']" size="1x" />
+                <font-awesome-icon
+                  class="icon"
+                  :icon="['fas', 'trash']"
+                  size="1x"
+                />
               </p>
               <p
                 class="is-small pr-2"
@@ -38,7 +42,11 @@
                   this.REMOVE_FAVORITE_ITEMS(fav.id);
                 "
               >
-                <font-awesome-icon :icon="['fas', 'shopping-cart']" size="1x" />
+                <font-awesome-icon
+                  class="icon"
+                  :icon="['fas', 'shopping-cart']"
+                  size="1x"
+                />
               </p>
             </div>
           </li>
