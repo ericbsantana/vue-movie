@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://api.themoviedb.org/3";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 const state = {
   movieList: [],

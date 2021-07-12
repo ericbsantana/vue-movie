@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://api.themoviedb.org/3";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 const state = {
   favoriteList: [],
@@ -42,7 +42,7 @@ const actions = {
   async fetchFavoriteItems({ commit }, id) {
     try {
       const response = await axios.get(
-        `/movie/${id}?api_key=9f1d609eaee68b9642aba56b5044944e&language=pt-BR`
+        `/movie/${id}?api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
       );
       const results = response.data;
 

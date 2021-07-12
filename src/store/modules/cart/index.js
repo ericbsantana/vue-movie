@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://api.themoviedb.org/3";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 const state = {
   cartList: [],
@@ -13,8 +13,14 @@ const mutations = {
     state.cartList = payload;
   },
   ADD_CART_ITEMS(state, payload) {
-    state.cartList.push(payload);
-    state.products_id.push(payload.id);
+    let isInCart = state.cartList.find((product) => product.id === payload.id);
+
+    if (isInCart) {
+      isInCart.quantity++;
+    } else {
+      state.cartList.push(payload);
+      state.products_id.push(payload.id);
+    }
   },
   REMOVE_CART_ITEMS(state, payload) {
     state.cartList = state.cartList.filter((movie) => movie.id !== payload);
@@ -40,7 +46,7 @@ const actions = {
   async fetchCartItems({ commit }, id) {
     try {
       const response = await axios.get(
-        `/movie/${id}?api_key=9f1d609eaee68b9642aba56b5044944e&language=pt-BR`
+        `/movie/${id}?api_key=${process.env.VUE_APP_API_KEY}&language=pt-BR`
       );
       const results = response.data;
 
@@ -48,6 +54,8 @@ const actions = {
         id: results.id,
         name: results.title,
         img: results.poster_path,
+        price: 9.99,
+        quantity: 1,
       });
     } catch (err) {
       console.log(err.message);
@@ -67,6 +75,14 @@ const getters = {
   },
   numberOfProducts: (state) => {
     return state.products_id.length;
+  },
+
+  totalPrice: (state) => {
+    let total = 0;
+    state.cartList.forEach((product) => {
+      total += product.quantity * product.price;
+    });
+    return total.toFixed(2);
   },
 };
 
