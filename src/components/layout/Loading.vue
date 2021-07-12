@@ -1,10 +1,10 @@
 <template>
   <section class="section">
     <div class="container">
-      <div class="notification is-info is-light has-text-centered	">
-        <p class="title">Loading, please wait...</p>
+      <div class="notification is-primary is-light has-text-centered	">
+        <p class="subtitle">Carregando... Aguarde, por favor</p>
         <br />
-        <FontAwesomeIcon :icon="faSpinner" />
+        <FontAwesomeIcon :icon="faSpinner" spin />
       </div>
     </div>
   </section>

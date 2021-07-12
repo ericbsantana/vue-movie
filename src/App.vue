@@ -1,17 +1,14 @@
 <template>
-  <Navbar />
-  <Movies />
+  <Main />
 </template>
 
 <script>
-import Navbar from "./components/layout/Navbar.vue";
-import Movies from "./components/Movies.vue";
+import Main from "./components/Main.vue";
 
 export default {
   name: "App",
   components: {
-    Navbar,
-    Movies,
+    Main,
   },
 };
 </script>
