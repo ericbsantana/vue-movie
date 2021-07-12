@@ -3,8 +3,10 @@
     <div class="container ">
       <div class="navbar-brand">
         <router-link to="/">
-          <a class="navbar-item is-size-3" href="/">
-            Movue
+          <a class="navbar-item">
+            <h1 class="title logo">
+              Movue
+            </h1>
           </a>
         </router-link>
         <div

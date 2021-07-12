@@ -2,9 +2,16 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
+Storage.prototype.setObj = function(key, obj) {
+  return this.setItem(key, JSON.stringify(obj));
+};
+Storage.prototype.getObj = function(key) {
+  return JSON.parse(this.getItem(key));
+};
+
 const state = {
-  cartList: [],
-  products_id: [],
+  cartList: localStorage.getObj("cart") || [],
+  products_id: localStorage.getObj("prod_ids") || [],
   isCartListOpen: false,
 };
 
@@ -17,14 +24,18 @@ const mutations = {
 
     if (isInCart) {
       isInCart.quantity++;
+      localStorage.setObj("cart", state.cartList);
     } else {
       state.cartList.push(payload);
       state.products_id.push(payload.id);
+      localStorage.setObj("cart", state.cartList);
+      localStorage.setObj("prod_ids", state.products_id);
     }
   },
   REMOVE_CART_ITEMS(state, payload) {
     state.cartList = state.cartList.filter((movie) => movie.id !== payload);
     state.products_id = state.products_id.filter((id) => id !== payload);
+    localStorage.setObj("cart", state.cartList);
   },
   CLEAR_CART_ITEMS(state) {
     while (state.cartList.length) {
@@ -33,6 +44,8 @@ const mutations = {
     while (state.products_id.length) {
       state.products_id.pop();
     }
+    localStorage.setObj("cart", state.cartList);
+    localStorage.setObj("prod_ids", state.products_id);
   },
   TOGGLE_CART_LIST(state) {
     state.isCartListOpen = !state.isCartListOpen;

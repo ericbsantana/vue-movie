@@ -23,7 +23,7 @@
 import Navbar from "./layout/Navbar.vue";
 import FavoriteBar from "./layout/Favorites/FavoriteBar.vue";
 import CartBar from "./layout/Cart/CartBar.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Main",
@@ -33,9 +33,16 @@ export default {
     CartBar,
   },
 
+  beforeCreate() {
+    this.INITIALIZE_CART;
+  },
+
   computed: {
     ...mapGetters(["isFavoriteListOpen"]),
     ...mapGetters(["isCartListOpen"]),
+  },
+  methods: {
+    ...mapMutations(["INITIALIZE_CART"]),
   },
 };
 </script>
